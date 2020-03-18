@@ -8,18 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textview.MaterialTextView;
+import com.zalocoders.fashionapp.Models.FashionGroup;
 import com.zalocoders.fashionapp.Models.RecentViewCourses;
 import com.zalocoders.fashionapp.R;
 import java.util.List;
 
 public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCoursesAdapter.ViewHolder> {
-    List<RecentViewCourses> recentViewCoursesList;
+    List<FashionGroup> recentViewCoursesList;
     Context context;
     public boolean on_attach = true;
-    RecentViewCourses recentViewCourse;
+    FashionGroup recentViewCourse;
 
 
-    public RecentViewCoursesAdapter(List<RecentViewCourses> recentViewCoursesList, Context context) {
+    public RecentViewCoursesAdapter(List<FashionGroup> recentViewCoursesList, Context context) {
         this.recentViewCoursesList = recentViewCoursesList;
         this.context = context;
     }
@@ -34,7 +35,7 @@ public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCou
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         recentViewCourse = recentViewCoursesList.get(position);
-        holder.name.setText(recentViewCourse.getName());
+        holder.name.setText(recentViewCourse.getTitle());
         holder.description.setText(recentViewCourse.getDescription());
 
         setAnimation(holder.itemView,position);

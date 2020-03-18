@@ -1,6 +1,7 @@
 package com.zalocoders.fashionapp.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,15 +9,19 @@ import android.os.Bundle;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.zalocoders.fashionapp.Adapters.RecentViewCoursesAdapter;
+import com.zalocoders.fashionapp.Models.FashionGroup;
 import com.zalocoders.fashionapp.Models.RecentViewCourses;
 import com.zalocoders.fashionapp.R;
+import com.zalocoders.fashionapp.Repo.FashionRepository;
+import com.zalocoders.fashionapp.Response.GroupResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class MainActivity extends AppCompatActivity {
     MaterialToolbar materialToolbar;
-    List<RecentViewCourses> recentViewCourses;
+    List<FashionGroup> recentViewCourses;
     RecentViewCoursesAdapter adapter;
     RecyclerView recentRecyclerview;
     @Override
@@ -30,21 +35,25 @@ public class MainActivity extends AppCompatActivity {
         recentRecyclerview.setLayoutManager(gridLayoutManager);
 
         recentViewCourses = new ArrayList<>();
-        fake();
         adapter = new RecentViewCoursesAdapter(recentViewCourses,this);
         recentRecyclerview.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        fetch();
 
     }
-    public void fake(){
-        for(int i=0;i<4;i++){
-            RecentViewCourses courses = new RecentViewCourses();
-            courses.setDescription("This is a beginner Kotlin android course"+ i);
-            courses.setName("Kitenge");
-            recentViewCourses.add(courses);
 
+        public void fetch(){
+            FashionRepository re = new FashionRepository();
+
+            re.getFashionGroups().observe(this, new Observer<GroupResponse>() {
+                @Override
+                public void onChanged(GroupResponse groupResponse) {
+
+                    recentViewCourses.addAll(groupResponse.getFashionGroups());
+                    adapter.notifyDataSetChanged();
+                }
+            });
         }
 
     }
 
-}
+
