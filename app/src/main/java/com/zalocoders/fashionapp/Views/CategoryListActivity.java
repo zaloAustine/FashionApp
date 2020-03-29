@@ -57,7 +57,7 @@ public class CategoryListActivity extends AppCompatActivity {
     }
 
     public void fetch(){
-        repository.getCategoryListItems("1").observe(this, new Observer<FashionCategoryItemsResponse>() {
+        repository.getCategoryListItems(SharedPreferenceHelper.getId()).observe(this, new Observer<FashionCategoryItemsResponse>() {
             @Override
             public void onChanged(FashionCategoryItemsResponse fashionCategoryItemsResponse) {
                 fashionCategoryList.addAll(fashionCategoryItemsResponse.getFashionItemCategory());

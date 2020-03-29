@@ -31,7 +31,7 @@ public class CategoryItemActivity extends AppCompatActivity {
         toolbar.setTitle("Item");
 
         description = findViewById(R.id.description);
-
+        repository = new FashionRepository();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -47,7 +47,7 @@ public class CategoryItemActivity extends AppCompatActivity {
     }
 
     public void Fetch(){
-        repository.getSingleItem("1").observe(this, new Observer<SingleItemResponse>() {
+        repository.getSingleItem(SharedPreferenceHelper.getId()).observe(this, new Observer<SingleItemResponse>() {
             @Override
             public void onChanged(SingleItemResponse singleItemResponse) {
                 SingleItem item = singleItemResponse.getSingleItem();
