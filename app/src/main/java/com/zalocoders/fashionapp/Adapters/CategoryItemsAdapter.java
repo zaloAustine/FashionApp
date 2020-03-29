@@ -1,4 +1,5 @@
 package com.zalocoders.fashionapp.Adapters;
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -6,25 +7,28 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.textview.MaterialTextView;
 import com.zalocoders.fashionapp.Models.FashionGroup;
-import com.zalocoders.fashionapp.Models.RecentViewCourses;
+import com.zalocoders.fashionapp.Models.FashionItemCategory;
 import com.zalocoders.fashionapp.R;
 import com.zalocoders.fashionapp.Views.CategoryActivity;
+import com.zalocoders.fashionapp.Views.CategoryItemActivity;
 
 import java.util.List;
 
-public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCoursesAdapter.ViewHolder> {
-    List<FashionGroup> recentViewCoursesList;
+public class CategoryItemsAdapter extends RecyclerView.Adapter<CategoryItemsAdapter.ViewHolder> {
+    List<FashionItemCategory> recentViewCoursesList;
     Context context;
     public boolean on_attach = true;
-    FashionGroup recentViewCourse;
+    FashionItemCategory recentViewCourse;
 
 
-    public RecentViewCoursesAdapter(List<FashionGroup> recentViewCoursesList, Context context) {
+    public CategoryItemsAdapter(List<FashionItemCategory> recentViewCoursesList, Context context) {
         this.recentViewCoursesList = recentViewCoursesList;
         this.context = context;
     }
@@ -45,7 +49,7 @@ public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCou
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, CategoryActivity.class);
+                Intent i = new Intent(context, CategoryItemActivity.class);
                 i.putExtra("id",String.valueOf(recentViewCourse.getId()));
                 context.startActivity(i);
             }

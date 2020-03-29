@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,8 +15,8 @@
             android:name=".Views.CategoryItemActivity"
             android:label="@string/title_activity_category_item"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Views.CategoryListActivity" />
-        <activity android:name=".Views.CategoryActivity" />
+        <activity android:name=".Views.CategoryListActivity" android:parentActivityName=".Views.CategoryActivity" />
+        <activity android:name=".Views.CategoryActivity"  android:parentActivityName=".Views.MainActivity"/>
         <activity android:name=".Views.MainActivity" />
         <activity android:name=".Views.SplashScreen">
             <intent-filter>

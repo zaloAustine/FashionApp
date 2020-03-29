@@ -1,4 +1,5 @@
 package com.zalocoders.fashionapp.Adapters;
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -6,25 +7,27 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.textview.MaterialTextView;
-import com.zalocoders.fashionapp.Models.FashionGroup;
-import com.zalocoders.fashionapp.Models.RecentViewCourses;
+import com.zalocoders.fashionapp.Models.FashionCategory;
 import com.zalocoders.fashionapp.R;
 import com.zalocoders.fashionapp.Views.CategoryActivity;
+import com.zalocoders.fashionapp.Views.CategoryListActivity;
 
 import java.util.List;
 
-public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCoursesAdapter.ViewHolder> {
-    List<FashionGroup> recentViewCoursesList;
+public class FashionCategoryAdapter extends RecyclerView.Adapter<FashionCategoryAdapter.ViewHolder> {
+    List<FashionCategory> recentViewCoursesList;
     Context context;
     public boolean on_attach = true;
-    FashionGroup recentViewCourse;
+    FashionCategory recentViewCourse;
 
 
-    public RecentViewCoursesAdapter(List<FashionGroup> recentViewCoursesList, Context context) {
+    public FashionCategoryAdapter(List<FashionCategory> recentViewCoursesList, Context context) {
         this.recentViewCoursesList = recentViewCoursesList;
         this.context = context;
     }
@@ -42,14 +45,16 @@ public class RecentViewCoursesAdapter extends RecyclerView.Adapter<RecentViewCou
         holder.name.setText(recentViewCourse.getTitle());
         holder.description.setText(recentViewCourse.getDescription());
 
+
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, CategoryActivity.class);
+                Intent i = new Intent(context, CategoryListActivity.class);
                 i.putExtra("id",String.valueOf(recentViewCourse.getId()));
                 context.startActivity(i);
             }
         });
+
 
         setAnimation(holder.itemView,position);
 
