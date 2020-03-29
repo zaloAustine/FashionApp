@@ -97,11 +97,11 @@ public class FashionRepository {
 
     }
 
-    public  MutableLiveData<SingleItemResponse> getSingleItem(String id){
+    public  MutableLiveData<SingleItemResponse> getSingleItem(String fashion_category_id){
 
         single_Item = new MutableLiveData<>();
 
-        networkService.getAPI().getSinglesItems(id).enqueue(new Callback<SingleItemResponse>() {
+        networkService.getAPI().getSinglesItems(fashion_category_id).enqueue(new Callback<SingleItemResponse>() {
             @Override
             public void onResponse(Call<SingleItemResponse> call, Response<SingleItemResponse> response) {
                 if (response.body() != null) {
